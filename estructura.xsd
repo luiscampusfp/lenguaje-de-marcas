@@ -71,7 +71,7 @@
                 <xs:attribute name="dni" use="required">
                     <xs:simpleType>
                         <xs:restriction base="xs:string">
-                            <xs:pattern value="^[0-9]{8}[A-Z]$"></xs:pattern>
+                            <xs:pattern value="[0-9]{8}[A-Z]"></xs:pattern>
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:attribute>
@@ -92,4 +92,6 @@
             <xs:element name="entorno" type="xs:decimal"></xs:element>
         </xs:all>
     </xs:complexType>
+
+    <xs:element name="descripcion" type="xs:string"></xs:element>
 </xs:schema>

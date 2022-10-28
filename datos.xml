@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<clase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="estructura.xsd">
+    <profesor dni="34534576D">
+        <nombre>Luis</nombre>
+        <apellidos>Moplina</apellidos>
+        <edad>30</edad>
+        <fecha_nac />
+        <salario></salario>
+        <contrato>Indefinido</contrato>
+    </profesor>
+    <estudiante>
+        <nombre></nombre>
+        <apellidos></apellidos>
+        <edad>25</edad>
+        <fecha_nac />
+        <asignaturas>
+            <base_datos>6</base_datos>
+            <programacion>8</programacion>
+            <entorno>4</entorno>
+        </asignaturas>
+        <notaAnyo>
+            <segundo>7</segundo>
+        </notaAnyo>
+        <descripcion></descripcion>
+        <descripcion></descripcion>
+        <descripcion></descripcion>
+    </estudiante>
+</clase>
