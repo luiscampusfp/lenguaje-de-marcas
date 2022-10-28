@@ -28,16 +28,10 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="fecha_nac">
-                <xs:complexType>
-                    <xs:attribute name="dia" type="xs:int"></xs:attribute>
-                    <xs:attribute name="mes" type="xs:int"></xs:attribute>
-                    <xs:attribute name="anyo" type="xs:int"></xs:attribute>
-                </xs:complexType>
-            </xs:element>
+            <xs:element name="fecha_nac" type="fecha"></xs:element>
         </xs:sequence>
     </xs:complexType>
- 
+
     <xs:complexType name="datosProfesor">
         <xs:complexContent>
             <xs:extension base="datosPersona">
@@ -68,5 +62,11 @@
                 </xs:attribute>
             </xs:extension>
         </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="fecha">
+        <xs:attribute name="dia" type="xs:int"></xs:attribute>
+        <xs:attribute name="mes" type="xs:int"></xs:attribute>
+        <xs:attribute name="anyo" type="xs:int"></xs:attribute>
     </xs:complexType>
 </xs:schema>
