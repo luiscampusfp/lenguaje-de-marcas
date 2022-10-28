@@ -8,7 +8,19 @@
                 <xs:element name="estudiante" minOccurs="20" maxOccurs="30">
                     <xs:complexType>
                         <xs:complexContent>
-                            <xs:extension base="datosPersona"></xs:extension>
+                            <xs:extension base="datosPersona">
+                                <xs:sequence>
+                                    <xs:element name="asignaturas" type="listaAsignaturas"></xs:element>
+                                    <xs:element name="notaAnyo">
+                                        <xs:complexType>
+                                            <xs:choice>
+                                                <xs:element name="primero" type="xs:decimal"></xs:element>
+                                                <xs:element name="segundo" type="xs:decimal"></xs:element>
+                                            </xs:choice>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:extension>
                         </xs:complexContent>
                     </xs:complexType>
                 </xs:element>
@@ -68,5 +80,13 @@
         <xs:attribute name="dia" type="xs:int"></xs:attribute>
         <xs:attribute name="mes" type="xs:int"></xs:attribute>
         <xs:attribute name="anyo" type="xs:int"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="listaAsignaturas">
+        <xs:all>
+            <xs:element name="programacion" type="xs:decimal"></xs:element>
+            <xs:element name="base_datos" type="xs:decimal"></xs:element>
+            <xs:element name="entorno" type="xs:decimal"></xs:element>
+        </xs:all>
     </xs:complexType>
 </xs:schema>
