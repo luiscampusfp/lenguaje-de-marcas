@@ -16,9 +16,12 @@
                                             <xs:choice>
                                                 <xs:element name="primero" type="xs:decimal"></xs:element>
                                                 <xs:element name="segundo" type="xs:decimal"></xs:element>
+                                                <xs:element name="tercero" type="xs:decimal"></xs:element>
                                             </xs:choice>
+                                            <xs:anyAttribute></xs:anyAttribute>
                                         </xs:complexType>
                                     </xs:element>
+                                    <xs:any maxOccurs="3"></xs:any>
                                 </xs:sequence>
                             </xs:extension>
                         </xs:complexContent>
