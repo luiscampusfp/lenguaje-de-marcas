@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="clase">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="profesor" type="datosProfesor"></xs:element>
+                <xs:element name="estudiante" minOccurs="20" maxOccurs="30">
+                    <xs:complexType>
+                        <xs:complexContent>
+                            <xs:extension base="datosPersona"></xs:extension>
+                        </xs:complexContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="datosPersona">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"></xs:element>
+            <xs:element name="apellidos" type="xs:string"></xs:element>
+            <xs:element name="edad">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minExclusive value="22"></xs:minExclusive>
+                        <xs:maxInclusive value="65"></xs:maxInclusive>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="fecha_nac">
+                <xs:complexType>
+                    <xs:attribute name="dia" type="xs:int"></xs:attribute>
+                    <xs:attribute name="mes" type="xs:int"></xs:attribute>
+                    <xs:attribute name="anyo" type="xs:int"></xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="datosProfesor">
+        <xs:complexContent>
+            <xs:extension base="datosPersona">
+                <xs:sequence>
+                    <xs:element name="salario" default="1500">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                                <xs:minInclusive value="1200"></xs:minInclusive>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="contrato">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="Indefinido"></xs:enumeration>
+                                <xs:enumeration value="Media Jornada"></xs:enumeration>
+                                <xs:enumeration value="Autonomo"></xs:enumeration>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="dni" use="required">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="^[0-9]{8}[A-Z]$"></xs:pattern>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>
