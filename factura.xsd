@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="factura">
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="datos-emisor"></xs:element>
+                <xs:element ref="datos-cliente"></xs:element>
+                <xs:element ref="detalle-factura"></xs:element>
+            </xs:all>
+            <xs:attributeGroup ref="datosFactura"></xs:attributeGroup>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="datos-emisor">
+        <xs:complexType>
+            <xs:group ref="datosEntidad"></xs:group>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="datos-cliente">
+        <xs:complexType>
+            <xs:group ref="datosEntidad"></xs:group>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="detalle-factura">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="línea" minOccurs="1" maxOccurs="15"></xs:element>
+            </xs:sequence>
+            <xs:attribute name="importe" use="required" type="tipoPrecio"></xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="línea">
+        <xs:complexType>
+            <xs:group ref="datosLinea"></xs:group>
+            <xs:attributeGroup ref="atributosLinea"></xs:attributeGroup>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:attributeGroup name="datosFactura">
+        <xs:attribute name="número" type="xs:positiveInteger" use="required"></xs:attribute>
+        <xs:attribute name="fecha" type="xs:date" use="required"></xs:attribute>
+        <xs:attribute name="moneda" type="xs:string" use="required" fixed="Euro"></xs:attribute>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="atributosLinea">
+        <xs:attribute name="código-artículo" use="required" type="xs:ID"></xs:attribute>
+        <xs:attribute name="tipo" type="tipoArticulo"></xs:attribute>
+    </xs:attributeGroup>
+    <xs:group name="datosEntidad">
+        <xs:sequence>
+            <xs:element name="nombre" type="tipoTexto"></xs:element>
+            <xs:element name="cif">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{8}[-][A-Z]"></xs:pattern>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="teléfono">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{9}"></xs:pattern>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:group>
+    <xs:group name="datosLinea">
+        <xs:sequence>
+            <xs:element name="descripción" type="tipoTexto"></xs:element>
+            <xs:element name="cantidad" type="xs:positiveInteger"></xs:element>
+            <xs:element name="oferta" minOccurs="0" maxOccurs="1"></xs:element>
+            <xs:element name="pvp" type="tipoPrecio"></xs:element>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:simpleType name="tipoTexto">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="5"></xs:minLength>
+            <xs:maxLength value="20"></xs:maxLength>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoPrecio">
+        <xs:restriction base="xs:decimal">
+            <xs:minExclusive value="0"></xs:minExclusive>
+            <xs:maxInclusive value="999"></xs:maxInclusive>
+            <xs:totalDigits value="5"></xs:totalDigits>
+            <xs:fractionDigits value="2"></xs:fractionDigits>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoArticulo">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Libro"></xs:enumeration>
+            <xs:enumeration value="DVD"></xs:enumeration>
+            <xs:enumeration value="Varios"></xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
